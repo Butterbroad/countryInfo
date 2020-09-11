@@ -1,24 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import Header from './components/Header/Header';
+import { useSelector } from 'react-redux'
+import Country from './components/Country/Country';
+import Loader from './components/Loader/Loader';
+import Intro from './components/Intro/Intro';
+
 
 function App() {
+  const country = useSelector(store => store.countries.countries);
+  const loading = useSelector(store => store.loader.loading);
+  console.log(country)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Header />
+      {loading ? <Loader />
+        :
+        !!country?.length && Array.isArray(country)
+          ? country.map((country, index) => (
+            <Country key={index} country={country} />
+          ))
+          : <Intro />
+
+      }
     </div>
   );
 }

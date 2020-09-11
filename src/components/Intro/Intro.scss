@@ -1,0 +1,25 @@
+.intro {
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px;
+  &__text {
+    color: #fff;
+    font-size: 40px;
+  }
+}
+@media (max-width: 1439px) {
+  .intro {
+    &__text {
+      font-size: 26px;
+    }
+  }
+}
+@media (max-width: 1023px) {
+  .intro {
+    &__text {
+      font-size: 20px;
+    }
+  }
+}
